@@ -29,12 +29,8 @@ jobs:
           if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
           run: poetry install --no-interaction
 
-        - name: Clone MongoDB
-            steps:
-            - uses: Maggi64/mongo-clone-action@0.2
-              with:
-                source: mongodb+srv://root:example@localhost:27017/
-                target: mongodb+srv://root:example@localhost:27017/
+        - name: Install mongo
+          run: docker-compose up
 
         - name: Format
           run: make format
