@@ -1,13 +1,5 @@
 name: Continuous Integration
 on: push
-jobs:
-  services:
-    mongodb:
-      image: mongo:6.0
-      username: root
-      password: exemple
-      ports:
-        - 27017:27017
   lint_and_test:
     runs-on: ubuntu-latest
     steps:
@@ -35,6 +27,9 @@ jobs:
         - name: Install dependencies
           if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
           run: poetry install --no-interaction
+
+        - name: mongo
+          run: sudo docker run --name mongo -d -p 27017:27017 mongo
 
         - name: Format
           run: make format
