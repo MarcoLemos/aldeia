@@ -32,7 +32,7 @@ jobs:
             mongodb-username: root
             mongodb-password: exemple
             mongodb-port: 27017
-            mongodb-db: supercharge
+            mongodb-db: teste
 
         - name: Install dependencies
           if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
