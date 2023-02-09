@@ -29,8 +29,12 @@ jobs:
           if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
           run: poetry install --no-interaction
 
-        - name: Install mongo
-          run: docker-compose up
+        - name: Start MongoDB
+          uses: supercharge/mongodb-github-action@1.8.0
+          with:
+            mongodb-version: 6.0
+            mongodb-username: root
+            mongodb-password: exemple
 
         - name: Format
           run: make format
