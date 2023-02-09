@@ -29,25 +29,11 @@ jobs:
           if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
           run: poetry install --no-interaction
 
-        - name: Install mongosh
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y wget gnupg
-            wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-            echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-            sudo apt-get update
-            sudo apt-get install -y mongodb-mongosh
-
-        - name: Create mongo Docker container
-          uses: DigiPie/mongo-action@v2.0.0
+        - name: Clone MongoDB
+        - uses: Maggi64/mongo-clone-action@0.2
           with:
-            image_version: latest
-            mongodb-username: root
-            mongodb-password: exemple
-            port: 27017
-
-        - name: Test mongo connection
-          run: "sudo mongosh localhost:27017"
+            source: mongodb+srv://root:example@localhost:27017/
+            target: mongodb+srv://root:example@localhost:27017/
 
         - name: Format
           run: make format
