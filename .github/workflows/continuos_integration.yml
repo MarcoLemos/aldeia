@@ -1,5 +1,6 @@
 name: Continuous Integration
 on: push
+jobs:
   lint_and_test:
     runs-on: ubuntu-latest
     steps:
