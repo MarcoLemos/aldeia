@@ -30,10 +30,11 @@ jobs:
           run: poetry install --no-interaction
 
         - name: Clone MongoDB
-        - uses: Maggi64/mongo-clone-action@0.2
-          with:
-            source: mongodb+srv://root:example@localhost:27017/
-            target: mongodb+srv://root:example@localhost:27017/
+            steps:
+            - uses: Maggi64/mongo-clone-action@0.2
+              with:
+                source: mongodb+srv://root:example@localhost:27017/
+                target: mongodb+srv://root:example@localhost:27017/
 
         - name: Format
           run: make format
