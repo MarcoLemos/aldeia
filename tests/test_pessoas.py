@@ -1,12 +1,10 @@
-from fastapi.testclient import TestClient
-from aldeia.main import app
 import pytest
+from httpx import AsyncClient
 
-client = TestClient(app)
 
-@pytest.mark.asyncio
-async def test_new_pessoa():
-    response = client.post('/pessoas', 
+@pytest.mark.anyio
+async def test_new_pessoa(client: AsyncClient):
+    response = await client.post('/pessoas/', 
     json={
             "nome": "Foo"
         },
@@ -16,9 +14,9 @@ async def test_new_pessoa():
     if response.json():
         assert isinstance(response.json()['nome'], str)
 
-@pytest.mark.asyncio
-async def test_read_item():
-    response = client.get('/pessoas')
+@pytest.mark.anyio
+async def test_read_item(client: AsyncClient):
+    response = await client.get('/pessoas/')
     assert response.status_code == 200
     assert isinstance(response.json(), list)
     if response.json():

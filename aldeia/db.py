@@ -2,8 +2,8 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from odmantic import AIOEngine
 
 
-def get_engine():
-    uri = 'mongodb://localhost:27017/'
-    client = AsyncIOMotorClient(uri)
-    engine = AIOEngine(client=client, database='teste')
-    return engine
+
+uri = 'mongodb://root:exemple@localhost:27017/admin'
+client = AsyncIOMotorClient(uri)
+engine = AIOEngine(client=client, database='teste')
+

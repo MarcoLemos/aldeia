@@ -1,9 +1,8 @@
 from fastapi import FastAPI
-
-from .db import get_engine
+from . import db
 
 app = FastAPI()
-engine = get_engine()
+engine = db.engine
 
 
 from .routers import pessoas
