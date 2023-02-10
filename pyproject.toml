@@ -11,6 +11,7 @@ python = "^3.10"
 uvicorn = "^0.20.0"
 fastapi = "^0.89.1"
 odmantic = "^0.9.2"
+pydantic = {extras = ["dotenv"], version = "^1.10.4"}
 
 
 [tool.poetry.group.dev.dependencies]

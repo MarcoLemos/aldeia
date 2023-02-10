@@ -3,8 +3,8 @@ from typing import List
 from fastapi import APIRouter, HTTPException
 from odmantic import ObjectId
 
-from ..main import engine
-from ..models import Pessoas
+from ..db import engine
+from ..models.pessoas import Pessoas
 
 router = APIRouter(
     prefix='/pessoas',

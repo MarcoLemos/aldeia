@@ -1,10 +1,20 @@
+from functools import lru_cache
 from fastapi import FastAPI
-from . import db
+import uvicorn
+from .config import Settings
+
+
 
 app = FastAPI()
-engine = db.engine
+@lru_cache()
+def get_settings():
+    return Settings()
+
 
 
 from .routers import pessoas
 
 app.include_router(pessoas.router)
+
+if __name__ == "__main__":
+    uvicorn.run(app)
